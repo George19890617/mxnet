@@ -100,7 +100,8 @@ def lstm_unroll(num_lstm_layer, seq_len, input_size,
     # I did not observe big speed difference between the following two ways
 
     label = mx.sym.transpose(data=label)
-    label = mx.sym.Reshape(data=label, target_shape=(0,))
+    #label = mx.sym.Reshape(data=label, target_shape=(0,))
+    label = mx.sym.Reshape(data=label, shape=(-1,))
 
     #label_slice = mx.sym.SliceChannel(data=label, num_outputs=seq_len)
     #label = [label_slice[t] for t in range(seq_len)]
